@@ -1,11 +1,9 @@
 from datetime import datetime
-time = datetime.now()
-print(time)
 class Account:
-    def __init__(self, first_name, last_name, Phone_no):
+    def __init__(self, first_name, last_name, Phone_number):
         self.first_name = first_name
         self.last_name = last_name
-        self.Phone_no = Phone_no
+        self.Phone_number = Phone_number
         self.withdrawals = []
         self.deposits =[]
         self.balance = 0
@@ -36,7 +34,7 @@ class Account:
                 "amount": amount
             }
             self.deposits.append(deposit)
-            formatted_time = time.strftime("%A, %drd %B %Y, %H:%M %p")
+            formatted_time = time.strftime("%H:%M%p %d/%m/%Y")
             print("You have deposited {} to {} on {}".format(amount, self.account_name(), formatted_time))
             
     def withdraw(self, amount):
@@ -61,11 +59,11 @@ class Account:
      return "The balance for {} is {}".format(self.account_name(), self.balance)
 
     def get_formatted_time(self, time):
-        return time.strftime("%A, %drd %B %Y, %H:%M %p")
+        return time.strftime("%H:%M%p %d/%m/%Y")
 
     def show_deposit_statements(self):
         for deposit in self.deposits:
-            formated_time = time.strftime("%A, %drd %B %Y, %H:%M %p")
+            formated_time = time.strftime("%H:%M%p %d/%m/%Y")
             print("{} deposited on {}".format(deposit, formated_time))
  
     def show_withdrawals_statement(self):
@@ -165,26 +163,7 @@ class MobileMoneyAccount(Account):
             self.paybil_number4444.append(amount)
             print(" {} sent!  to pabill number {} from {} ".format(amount, paybill_number, self.account_name()))
 
-    """def send_money(acc1, acc2, amount):
-        acc1.withdraw(amount)
-        acc1.deposit(amount)
-        print("You have sent {} from {} to {} ".format(amount, acc1, acc2))"""
 
-
-    """def transfer(self, amount, account):
-        try:
-            amount + 1
-        except TypeError:
-            print("You must enter the amount in figures")
-            return
-        if amount <= 0:
-            print("You cannot deposit a nrgative value")
-        elif amount > self.balance:
-            print("You have insufficient funds to make this transaction")
-        else:
-            self.balance -= amount
-            account.balance += amount
-            print("You have transfered {} to {} ".format(amount, self.account_name()))"""
     def send_money(account1, account2, amount):
         try:
             amount + 1
@@ -205,19 +184,3 @@ class MobileMoneyAccount(Account):
         var2 = account1.deposit(amount)
         print("You have recieved {} ".format(amount, ))
         
-
-
-acc1 = MobileMoneyAccount("Mary", "Kalesi", 12154, "Safaricom")
-acc2 = MobileMoneyAccount("Jhon", "Muema", 12154, "Safaricom")
-acc1.deposit(1000)
-acc2.deposit(5000)
-
-MobileMoneyAccount.send_money(acc1, acc2, 500)
-MobileMoneyAccount.recieve_money(acc2, acc1, 1500)
-acc1.get_balance()
-
-
-"""acc2 = MobileMoneyAccount("Mary", "Kalesi", 12154, "Safaricom")
-acc1 = MobileMoneyAccount("Sammy", "Kalesi", 12154, "Safaricom")
-acc1.deposit(20356)
-MobileMoneyAccount.send_money(20000, acc1, acc2)"""
